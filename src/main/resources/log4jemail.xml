@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration>
+
+    <appender name="CustomAppender" class="customlogger.CustomAppender">
+
+        <param name="user" value="evgenij.svetozarov@yandex.ru"/>
+        <param name="pass" value=""/>
+        <param name="host" value="smtp.yandex.ru"/>
+        <param name="port" value="465"/>
+        <param name="addresFrom" value="evgenij.svetozarov@yandex.ru"/>
+        <param name="addresTo" value="e.svetozarov.stc@innopolis.ru"/>
+        <param name="fileName" value="logMail.log"/>
+
+        <layout class="customlogger.CustomClientLayout">
+            <param name="ConversionPattern" value="%-7p %d [%t] %c %x - %m%n"/>
+        </layout>
+    </appender>
+
+    <root>
+        <level value="DEBUG" />
+        <appender-ref ref="CustomAppender" />
+    </root>
+
+</log4j:configuration>
