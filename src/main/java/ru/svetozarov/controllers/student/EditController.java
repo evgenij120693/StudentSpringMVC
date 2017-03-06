@@ -43,4 +43,23 @@ public class EditController  {
             return "edit";
         }
     }
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String editPost(Model model,
+                           @RequestParam(name = "id", defaultValue = "0") Integer id,
+                           @RequestParam(name = "id_group") Integer id_group,
+                           @RequestParam(name = "name") String name,
+                           @RequestParam(name = "bith_date") String date,
+                           @RequestParam(name="sex") String sex){
+        Student student = new Student(id, name, date, sex, id_group);
+        try {
+            if (student_service.updateStudent(student)) {
+                return "redirect:list";
+            } else {
+               return "redirect:error";
+            }
+        } catch (UserDaoException e) {
+            logger.error(e);
+            return "redirect:error";
+        }
+    }
 }
