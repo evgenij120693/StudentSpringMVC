@@ -23,4 +23,22 @@ dependencies {
     // https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk16
     compile group: 'org.bouncycastle', name: 'bcprov-jdk16', version: '1.45'
     compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.5.RELEASE'
+
+
+
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
+    compile group: 'org.springframework.security', name: 'spring-security-core', version: '4.2.2.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-config
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.2.2.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-web
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.2.2.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.springframework/spring-jdbc
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '2.0.6'
+
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.8.Final'
+
+
+
 }

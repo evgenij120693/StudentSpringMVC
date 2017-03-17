@@ -43,4 +43,8 @@ public class UserService {
             return false;
         }
     }
+
+    public User getUserBylogin(String login) throws UserDaoException {
+        return userDAO.getUserByLogin2(login);
+    }
 }

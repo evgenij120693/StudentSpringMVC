@@ -2,30 +2,49 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:secured="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
     <!-- DispatcherServlet Context: defines this servlet's request-processing
         infrastructure -->
 
     <!-- Enables the Spring MVC @Controller programming model -->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
 
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving
         up static resources in the ${webappRoot}/resources directory -->
 
     <!--<mvc:resources mapping="/resources/**" location="/resources/" />-->
 
-    <context:component-scan base-package="ru.svetozarov" />
+    <context:component-scan base-package="ru.svetozarov"/>
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources
         in the /WEB-INF/views directory -->
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/view/" />
-        <property name="suffix" value=".jsp" />
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
+
+    <secured:global-method-security secured-annotations="enabled"></secured:global-method-security>
+
+    <!--<bean id="dataSource"-->
+    <!--class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+
+    <!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+    <!--<property name="url"-->
+    <!--value="jdbc:mysql://localhost:3306/example" />-->
+    <!--<property name="username" value="root" />-->
+    <!--<property name="password" value="1234" />-->
+    <!--</bean>-->
+
+    <!--&lt;!&ndash; If DataSource is configured in Tomcat Servlet Container &ndash;&gt;-->
+    <!--<bean id="dbDataSource"-->
+    <!--class="org.springframework.jndi.JndiObjectFactoryBean">-->
+    <!--<property name="jndiName" value="java:comp/env/jdbc/MyLocalDB" />-->
+    <!--</bean>-->
 
 
 </beans>

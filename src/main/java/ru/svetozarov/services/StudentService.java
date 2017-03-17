@@ -3,6 +3,7 @@ package ru.svetozarov.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import ru.svetozarov.common.exceptions.UserDaoException;
 import ru.svetozarov.models.dao.StudentDAO;
@@ -36,7 +37,7 @@ public class StudentService {
     public   boolean updateStudent(Student student) throws UserDaoException {
         return studentDAO.updateStudentById(student);
     }
-
+    @Secured("ROLE_ADMIN")
     public  boolean insertStudent(Student student) throws UserDaoException {
         return studentDAO.insertStudentById(student);
     }

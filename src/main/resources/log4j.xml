@@ -13,7 +13,7 @@
         </layout>
     </appender>
     <root>
-        <priority value="TRACE"/>
+        <priority value="WARN"/>
         <appender-ref ref="Appender1" />
         <appender-ref ref="Appender2" />
     </root>

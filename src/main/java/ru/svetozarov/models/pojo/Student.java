@@ -1,8 +1,12 @@
 package ru.svetozarov.models.pojo;
 
+import javax.persistence.*;
+
 /**
  * Created by Шмыга on 23.02.2017.
  */
+@Entity
+@Table(name = "student", schema = "example", catalog = "student")
 public class Student {
     public Student(int id, String name, String birth_date, String sex, int idGroup) {
         this.id = id;
@@ -14,6 +18,7 @@ public class Student {
 
     public Student() {
     }
+
 
     public int getId() {
         return id;
@@ -62,11 +67,20 @@ public class Student {
     public void setEmail(String email) {
         this.email = email;
     }
-
+    @Id
+    @GeneratedValue
     private int id;
+    @Column(name = "name")
     private String name;
+
+    @Column
     private String birth_date;
+
+    @Column
     private String sex;
+
     private int idGroup;
+
+    @Column(name = "email")
     private String email;
 }

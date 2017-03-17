@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Шмыга
@@ -15,15 +16,16 @@
 <body>
 <a href="/students/registration">Registration</a>
 <div>
-    <form action="/students/login" method="post">
+    <c:url var="logoutUrl" value="/j_spring_security_check"/>
+    <form action="${logoutUrl}" method="post">
         <table>
             <tr>
                 <td>Login:</td>
-                <td><input type="text" name="login" value=""></td>
+                <td><input type="text" name="j_username" value=""></td>
             </tr>
             <tr>
                 <td>Password:</td>
-                <td><input type="password" name="password" value=""></td>
+                <td><input type="password" name="j_password" value=""></td>
             </tr>
          </table>
         <input type="submit" value="Login">

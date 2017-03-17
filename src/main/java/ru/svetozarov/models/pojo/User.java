@@ -1,13 +1,22 @@
 package ru.svetozarov.models.pojo;
 
+import javax.persistence.*;
+
 /**
  * Created by Шмыга on 23.02.2017.
  */
+@Entity
+@Table(name = "user", schema = "example")
 public class User {
+    @Id
     private int idUser;
+    @Column(name = "login")
     private String login;
+    @Column
     private String password;
+    @Column
     private String role;
+    @Column
     private String email;
 
     public String getEmail() {
