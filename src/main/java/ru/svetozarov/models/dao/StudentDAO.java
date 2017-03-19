@@ -1,11 +1,16 @@
 package ru.svetozarov.models.dao;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.stereotype.Component;
 import ru.svetozarov.common.exceptions.UserDaoException;
 import ru.svetozarov.models.connector.Connector;
 import ru.svetozarov.models.pojo.Student;
 import org.apache.log4j.Logger;
 
+import java.io.IOException;
+import java.io.Reader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,32 +32,56 @@ public class StudentDAO {
     private static final String QUERY_DELETE_BY_ID = "delete from example.student where id=?";
 
     public  List<Student> selectAllStudent() throws UserDaoException {
-        List<Student> list = new ArrayList<>();
-
-        try (Connection conn = Connector.getConnection()) {
-            Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery(QUERY_SELECT_ALL);
-            while (resultSet.next()){
-                logger.trace("result select " + resultSet.getString("name"));
-                Student student =new Student(
-                        resultSet.getInt("id"),
-                        resultSet.getString("name"),
-                        resultSet.getString("bith_date"),
-                        resultSet.getString("sex"),
-                        resultSet.getInt("group_id")
-                );
-                list.add(student);
-            }
-        } catch (SQLException e) {
-            logger.error(e);
-            throw new UserDaoException();
+        List<Student> list =null;
+        SqlSessionFactory sqlSessionFactory;
+        StudentsMapper studentsMaper;
+        Reader reader = null;
+        try {
+            reader = Resources.getResourceAsReader("/META-INF/mybatis-config.xml");
+            sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+            studentsMaper = sqlSessionFactory.openSession().getMapper(StudentsMapper.class);
+            list = studentsMaper.selectAllStudent();
         }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+//        try (Connection conn = Connector.getConnection()) {
+//            Statement statement = conn.createStatement();
+//            ResultSet resultSet = statement.executeQuery(QUERY_SELECT_ALL);
+//            while (resultSet.next()){
+//                logger.trace("result select " + resultSet.getString("name"));
+//                Student student =new Student(
+//                        resultSet.getInt("id"),
+//                        resultSet.getString("name"),
+//                        resultSet.getString("bith_date"),
+//                        resultSet.getString("sex"),
+//                        resultSet.getInt("group_id")
+//                );
+//                list.add(student);
+//            }
+//        } catch (SQLException e) {
+//            logger.error(e);
+//            throw new UserDaoException();
+//        }
         return list;
     }
 
     public  Student getStudentById(int id) throws UserDaoException {
+        SqlSessionFactory sqlSessionFactory;
+        StudentsMapper studentsMaper;
+        Reader reader = null;
         Student student = null;
         try {
+            reader = Resources.getResourceAsReader("/META-INF/mybatis-config.xml");
+            sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+            studentsMaper = sqlSessionFactory.openSession().getMapper(StudentsMapper.class);
+            student = studentsMaper.getStudentById(id);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return student;
+       /* try {
             try(Connection conn = Connector.getConnection();
             PreparedStatement prepS = conn.prepareStatement(QUERY_SELECT_BY_ID)){
                 prepS.setInt(1, id);
@@ -72,8 +101,7 @@ public class StudentDAO {
         } catch (SQLException e) {
             logger.error(e);
             throw new UserDaoException();
-        }
-        return  student;
+        }*/
     }
 
     public  boolean updateStudentById(Student student) throws UserDaoException {

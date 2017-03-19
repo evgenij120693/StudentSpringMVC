@@ -26,8 +26,8 @@
             <td>Sex</td>
             <td>
                 <select name="sex">
-                    <option value="w" <%if (student.getSex().equals("w")) {%> selected  <%}%>>Women</option>
-                    <option value="m" <%if (student.getSex().equals("m")) {%> selected  <%}%>> Men</option>
+                    <option value="w" >Women</option>
+                    <option value="m" > Men</option>
                 </select>
             </td>
         </tr>
@@ -40,3 +40,5 @@
 </form>
 </body>
 </html>
+<%--<option value="w" <%if (student.getSex().equals("w")) {%> selected  <%}%>>Women</option>--%>
+<%--<option value="m" <%if (student.getSex().equals("m")) {%> selected  <%}%>> Men</option>--%>

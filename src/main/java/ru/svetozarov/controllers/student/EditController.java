@@ -32,6 +32,7 @@ public class EditController  {
         if (id != 0) {
             try {
                 Student student = student_service.selectStudent(id);
+                System.out.println(student.getName());
                 model.addAttribute("student", student);
                 return "edit";
             } catch (UserDaoException e) {
