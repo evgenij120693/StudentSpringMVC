@@ -27,8 +27,8 @@ import java.util.List;
 @Component
 public class UserDAO {
     private static Logger logger = Logger.getLogger(UserDAO.class);
-    private static final EntityManagerFactory FACTORY =
-            Persistence.createEntityManagerFactory("STUDENTS");
+    /*private static final EntityManagerFactory FACTORY =
+            Persistence.createEntityManagerFactory("STUDENTS");*/
     private  final String SQL_FIND_USER = "Select * from example.user where login = ? and password = ?";
     private  final String SQL_USER_BY_ID = "Select * from example.user where id = ?";
     private  final String SQL_USER_BY_LOGIN = "Select * from example.user where login = ?";
@@ -37,7 +37,7 @@ public class UserDAO {
 
 
     public User getUserByLogin2(String username) throws UserDaoException {
-        System.out.println("LOGInLOGIN LOGIN");
+       /* System.out.println("LOGInLOGIN LOGIN");
         EntityManager em = FACTORY.createEntityManager();
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
@@ -58,13 +58,14 @@ public class UserDAO {
         em.getTransaction().commit();
         em.close();
         return user;*/
+       return null;
     }
 
     public  User getUserByLoginAndPassword(String login, String password)
             throws UserDaoException {
         User user = null;
-        EntityManager em = FACTORY.createEntityManager();
-        em.getTransaction().begin();
+        /*EntityManager em = FACTORY.createEntityManager();
+        em.getTransaction().begin();*/
        /* user = em.createQuery("select * from user u " +
                 "where login = :login and password = :password", User.class)
                 .setParameter("login", login)

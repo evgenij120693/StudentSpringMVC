@@ -39,6 +39,12 @@ dependencies {
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
     compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.8.Final'
 
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.8.Final'
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.9.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-aspects', version: '4.3.7.RELEASE'
+    compile group: 'joda-time', name: 'joda-time', version: '2.9.7'
+    compile group: 'joda-time', name: 'joda-time-hibernate', version: '1.4'
+
 
 
 }
